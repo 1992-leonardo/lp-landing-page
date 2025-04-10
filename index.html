@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LP Creative Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="light-theme">
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#">
+                    <img src="lp-site.png" alt="logo" width="150" class="logo-light">
+                    <img src="lp-site-black.png" alt="logo" width="150" class="logo-dark">
+                </a>
+
+                <div class="btn-group">
+                    <button class="theme-btn theme-btn-mobile light">
+                        <ion-icon name="moon" class="moon"></ion-icon>
+                        <ion-icon name="sunny" class="sun"></ion-icon>
+                    </button>
+
+                    <button class="nav-menu-btn">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </button>
+                </div>
+
+                <div class="flex-wrapper">
+                    <ul class="desktop-nav">
+                        <li><a href="#" class="nav-link">Início</a></li>
+                        <li><a href="#servicos" class="nav-link">Serviços</a></li>
+                        <li><a href="#contato" class="nav-link">Contato</a></li>
+
+                        <button class="theme-btn theme-btn-desktop light">
+                            <ion-icon name="moon" class="moon"></ion-icon>
+                            <ion-icon name="sunny" class="sun"></ion-icon>
+                        </button>
+                    </ul>
+
+                </div>
+
+                <div class="mobile-nav">
+                    <button class="nav-close-btn">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
+
+                    <div class="wrapper">
+                        <p class="h3 nav-title">Main Menu</p>
+
+                        <ul>
+                            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                            <li class="nav-item"><a href="servicos.html" class="nav-link">Serviços </a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Contato</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <p class="h3 nav-title">Topicos</p>
+
+                        <ul>
+                            <li class="nav-item"><a href="#" class="nav-link">Database</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Accessibility </a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Web Performance</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <div class="container">
+                <div class="left">
+                    <h1 class="h1">Olá, seja bem vindo a <b>LP Creative&nbsp;Solutions</b>.
+                        <br>
+                        <br>Aqui na LP Solutions Creative você encontra tudo o que precisa para sua empresa!
+                    </h1>
+                    <br>
+                    <p class="h3">Empresa Especializada em Tecnologia <abbr title="Accessibility">e</abbr> Soluções
+                        digitais.</p>
+                    <div class="btn-group">
+                        <a href="https://wa.me/5511964801185" target="_blank" class="btn btn-primary">Entre em
+                            contato</a>
+                        <a href="#servicos" class="btn btn-secondary">Serviços</a>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="pattern-bg"></div>
+                    <div class="img-box">
+                        <img src="eu.png" alt="image" class="hero-img">
+                        <div class="shape shape1"></div>
+                        <div class="shape shape2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="servicos"></section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('servicos.html')
+                    .then(res => res.text())
+                    .then(data => {
+                        document.getElementById('servicos').innerHTML = data;
+                    });
+            });
+        </script>
+    </main>
+
+    <section id="contato"></section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('contato.html')
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById('contato').innerHTML = data;
+                });
+        });
+    </script>
+
+    <script src="main.js"></script>
+
+    <!-- EmailJS - biblioteca -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <!-- EmailJS - inicialização e envio do formulário -->
+    <script>
+        (function () {
+            emailjs.init("xAkzX3i5hm0Mjvn7F"); // Public Key
+        })();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('contato.html')
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById('contato').innerHTML = data;
+
+                    const form = document.getElementById('formContato');
+                    if (form) {
+                        form.addEventListener('submit', function (e) {
+                            e.preventDefault();
+
+                            emailjs.sendForm('service_ddei5ij', 'template_83zvb2d', this)
+                                .then(function () {
+                                    alert('Mensagem enviada com sucesso!');
+                                    form.reset();
+                                }, function (error) {
+                                    alert('Erro ao enviar a mensagem. Tente novamente.');
+                                    console.error('Erro:', error);
+                                });
+                        });
+                    }
+                });
+        });
+
+    </script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
